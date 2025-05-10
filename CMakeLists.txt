@@ -16,7 +16,7 @@ else()
     set(USERHOME $ENV{HOME})
 endif()
 set(sdkVersion 1.5.1)
-set(toolchainVersion 13_2_Rel1)
+set(toolchainVersion 13_3_Rel1)
 set(picotoolVersion 2.0.0)
 set(picoVscode ${USERHOME}/.pico-sdk/cmake/pico-vscode.cmake)
 if (EXISTS ${picoVscode})
@@ -28,40 +28,43 @@ set(PICO_BOARD pico_w CACHE STRING "Board type")
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
 
-project(lab-01-galton-board C CXX ASM)
+project(display_oled C CXX ASM)
 
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
-# Add executable. Default name is the project name, version 0.1
+# Add executable.
+# Default name is the project name, version 0.1
 
-add_executable(lab-01-galton-board
-  ./src/lab-01-galton-board.c 
-  ./include/ssd1306_i2c.c
-)
+add_executable(display_oled
+        display_oled.c      # Arquivo principal da aplicação
+        src/oled_driver.c   # Driver OLED na pasta src
+        inc/ssd1306_i2c.c   # Funções base I2C do OLED na pasta inc
+        )
 
-pico_set_program_name(lab-01-galton-board "lab-01-galton-board")
-pico_set_program_version(lab-01-galton-board "0.1")
+pico_set_program_name(display_oled "display_oled")
+pico_set_program_version(display_oled "0.1")
 
 # Modify the below lines to enable/disable output over UART/USB
-pico_enable_stdio_uart(lab-01-galton-board 0)
-pico_enable_stdio_usb(lab-01-galton-board 1)
+pico_enable_stdio_uart(display_oled 0)
+pico_enable_stdio_usb(display_oled 1)
 
 # Add the standard library to the build
-target_link_libraries(lab-01-galton-board
+target_link_libraries(display_oled
         pico_stdlib)
 
 # Add the standard include files to the build
-target_include_directories(lab-01-galton-board PRIVATE
-        ${CMAKE_CURRENT_LIST_DIR}
-        ./include
+# (O CMake geralmente encontra includes na pasta raiz e 'inc' automaticamente,
+# mas pode ser explícito se necessário)
+target_include_directories(display_oled PRIVATE
+  ${CMAKE_CURRENT_LIST_DIR}
+  ${CMAKE_CURRENT_LIST_DIR}/inc # Garante que a pasta inc seja incluída
+  ${CMAKE_CURRENT_LIST_DIR}/src # Garante que a pasta src seja incluída (se houver headers lá)
 )
 
 # Add any user requested libraries
-target_link_libraries(lab-01-galton-board 
+target_link_libraries(display_oled
         hardware_i2c
-        
         )
 
-pico_add_extra_outputs(lab-01-galton-board)
-
+pico_add_extra_outputs(display_oled)
