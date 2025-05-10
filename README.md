@@ -1,4 +1,4 @@
-# Tábua de Galton no Display OLED com Raspberry Pi Pico W
+# Galton board no Display OLED com Raspberry Pi Pico W
 
 E aí! Este projeto é uma simulação da Tábua de Galton rodando numa Raspberry Pi Pico W e usando um display OLED SSD1306 de 128x64 pixels.
 
