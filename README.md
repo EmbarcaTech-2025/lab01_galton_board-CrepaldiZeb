@@ -1,6 +1,6 @@
-# Galton board no BiTDogLab
+# Galton board no BitDogLab
 
-Este projeto é uma simulação da Tábua de Galton rodando no BiTDogLab.
+Este projeto é uma simulação da Galton Board rodando no BitDogLab.
 
 ## O que faz?
 
