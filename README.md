@@ -1,6 +1,6 @@
-# Galton board no Display OLED com Raspberry Pi Pico W
+# Galton board no BiTDogLab
 
-E aí! Este projeto é uma simulação da Tábua de Galton rodando numa Raspberry Pi Pico W e usando um display OLED SSD1306 de 128x64 pixels.
+Este projeto é uma simulação da Tábua de Galton rodando no BiTDogLab.
 
 ## O que faz?
 
@@ -12,8 +12,8 @@ Tem também um botão para trocar de tela e ver quantas bolinhas já caíram no 
 
 ## Como funciona por dentro:
 * **Botões:**
-    * Um botão para soltar uma nova bolinha na tábua.
-    * Outro botão para alternar entre a tela da simulação e uma tela que mostra o total de bolinhas que já caíram.
+    * Botão B para soltar uma nova bolinha na tábua.
+    * Botão A para alternar entre a tela da simulação e uma tela que mostra o total de bolinhas que já caíram.
 * **"Pinos" Virtuais Configuráveis:** No arquivo `display_oled.c`, você pode ajustar:
     * `PIN_START_X`: Onde o primeiro "andar" de pinos começa na horizontal.
     * `NUM_PIN_LEVELS`: Quantos "andares" de pinos você quer.
